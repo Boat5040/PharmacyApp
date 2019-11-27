@@ -1,0 +1,120 @@
+﻿@model PharmacyApp.ViewModels.SecurityPolicyViewModel
+@using PharmacyApp.Constants
+@{
+    ViewBag.Title = "Security Policy";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-7">
+        <h2>SECURITY POLICY</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="@Url.RouteUrl(HomeControllerRoute.GetIndex)">Home</a>
+            </li>
+            <li class="active">
+                <a href="#">@ViewBag.Title</a>
+            </li>
+        </ol>
+    </div>
+</div>
+
+<div class="wrapper wrapper-content">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Institution security policy settings</h5>
+                </div>
+                <div class="ibox-content">
+                    <form id="form" class="form-horizontal" method="post" action="@Url.RouteUrl(SecurityPolicyControllerRoute.GetIndex)">
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.MinimumPasswordLength, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-5">
+                                @Html.EditorFor(model => model.MinimumPasswordLength, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.MinimumPasswordLength, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.MaximumPasswordLength, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-5">
+                                @Html.EditorFor(model => model.MaximumPasswordLength, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.MaximumPasswordLength, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        @*<div class="form-group">
+                            @Html.LabelFor(model => model.MinimumAgeDays, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-5">
+                                @Html.EditorFor(model => model.MinimumAgeDays, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.MinimumAgeDays, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.MaximumAgeDays, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-5">
+                                @Html.EditorFor(model => model.MaximumAgeDays, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.MaximumAgeDays, "", new { @class = "text-danger" })
+                            </div>
+                        </div>*@
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-5">
+                                <div class="checkbox i-checks"><label> @Html.CheckBoxFor(m => m.RequireDigit)<i></i> @Html.LabelFor(model => model.RequireDigit) </label></div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-5">
+                                <div class="checkbox i-checks"><label> @Html.CheckBoxFor(m => m.RequireUppercase)<i></i> @Html.LabelFor(model => model.RequireUppercase) </label></div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-5">
+                                <div class="checkbox i-checks"><label> @Html.CheckBoxFor(m => m.RequireLowercase)<i></i> @Html.LabelFor(model => model.RequireLowercase) </label></div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-5">
+                                <div class="checkbox i-checks"><label> @Html.CheckBoxFor(m => m.RequireSpecialCharacter)<i></i> @Html.LabelFor(model => model.RequireSpecialCharacter) </label></div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.SpecialCharacters, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-5">
+                                @Html.EditorFor(model => model.SpecialCharacters, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.SpecialCharacters, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-lg-offset-2 col-lg-5">
+                                <button class="btn btn-outline btn-sm btn-primary" type="submit">Update Policy</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section styles{
+    <link href="~/Content/plugins/iCheck/custom.css" rel="stylesheet" />
+}
+
+@section scripts{
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/plugins/iCheck/icheck.min.js"></script>
+    <script src="~/Scripts/App/icheckInit.js"></script>
+    <script src="~/Client Scripts/MvcFoolproofJQueryValidation.min.js"></script>
+    <script src="~/Client Scripts/mvcfoolproof.unobtrusive.min.js"></script>
+}

@@ -1,0 +1,52 @@
+﻿@model PharmacyApp.ViewModels.LoginViewModel
+@{
+    ViewBag.Title = "LockScreen";
+}
+@{ 
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PharmacyApp | Lockscreen</title>
+
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/fonts/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link href="~/Content/animate.css" rel="stylesheet" />
+    <link href="~/Content/style.css" rel="stylesheet" />
+
+</head>
+
+<body class="gray-bg">
+
+    <div class="lock-word animated fadeInDown">
+        <span class="first-word">LOCKED</span><span>SCREEN</span>
+    </div>
+    <div class="middle-box text-center lockscreen animated fadeInDown">
+        <div>
+            <div class="m-b-md">
+                <img alt="image" class="img-circle circle-border" src="~/Content/Images/Kwasi Boateng.jpg">
+                
+            </div>
+            <h3>John Smith</h3>
+            <p>Your are in lock screen. Pharmacy App was shut down and you need to enter your passwor to go back to app.</p>
+            <form class="m-t" role="form" action="#" method="post">
+                <div class="form-group">
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Password" })
+                    <span class="highlight"></span><span class="bar"></span>
+
+                </div>
+                <button type="submit" class="btn btn-primary block full-width">Unlock</button>
+            </form>
+        </div>
+    </div>
+
+</body>
+
+</html>
+

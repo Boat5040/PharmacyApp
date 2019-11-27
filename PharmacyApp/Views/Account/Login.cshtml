@@ -1,0 +1,57 @@
+﻿@model PharmacyApp.ViewModels.LoginViewModel
+@using PharmacyApp.Constants
+@{
+    ViewBag.Title = "Login";
+}
+@{ 
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login</title>
+
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Content/fonts/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link href="~/Content/animate.css" rel="stylesheet">
+    <link href="~/Content/style.css" rel="stylesheet">
+
+</head>
+
+<body class="gray-bg">
+
+    <div class="middle-box text-center loginscreen  animated fadeInDown">
+        <div>
+            <div>
+                <h1 class="logo-name">OP+</h1>
+            </div>
+            <h3>Welcome to OPS +</h3>
+            <form class="m-t" role="form"action="@Url.Action("Login","Account")" method="post">
+                @Html.AntiForgeryToken()
+                <br />
+                @Html.ValidationSummary(true, "", htmlAttributes: new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", placeholder = "Username" })
+                    <span class="highlight"></span><span class="bar"></span>
+                </div>
+                <div class="form-group">
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Password" })
+                    <span class="highlight"></span><span class="bar"></span>
+                </div>
+                <div class="form-group">
+                    <div class="checkbox i-checks"><label> @Html.CheckBoxFor(m => m.RememberMe)<i></i> Keep me signed in </label></div>
+                </div>
+                <button type="submit" class="btn btn-primary block full-width m-b">Login</button>
+            </form>
+            <p class="m-t"> <small>Online Pharmacy App &copy; @DateTime.Now.Year</small> </p>        </div>
+    </div>
+</body>
+</html>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

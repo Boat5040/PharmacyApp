@@ -1,0 +1,123 @@
+﻿@model PharmacyApp.ViewModels.TaxViewModel
+@using PharmacyApp.Constants
+
+@{
+    ViewBag.Title = "Taxes";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>TAXES</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="@Url.RouteUrl(TaxSettingControllerRoute.GetIndex)">Home</a>
+            </li>
+            <li class="active">
+                <a href="#">@ViewBag.Title</a>
+            </li>
+        </ol>
+    </div>
+</div>
+
+<div class="wrapper wrapper-content">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox ibox-content">
+                    <p>
+                        <a href="@*@Url.RouteUrl(TaxSettingControllerRoute.GetCreate)*@" class="btn btn-primary " data-toggle="modal" data-target="#myModal">Add Tax</a>
+                    </p>
+                    <table id="myData" class="table table-responsive table-striped table-bordered table-hover dataTables-example">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Name)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Percentage)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Status)
+                                </th>
+
+                                <th>
+                                </th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div  class="modal inmodal" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <div class="wrapper wrapper-content">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="ibox float-e-margins">
+                                <div class="ibox-title">
+                                    <h5>New tax form</h5>
+                                </div>
+                                <div class="ibox-content">
+                                    <form id="form" class="form-horizontal" method="post" action="@Url.RouteUrl(TaxSettingControllerRoute.GetCreate)">
+                                        @Html.AntiForgeryToken()
+                                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                                            <div class="col-md-5">
+                                                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.Percentage, htmlAttributes: new { @class = "control-label col-md-2" })
+                                            <div class="col-md-5">
+                                                @Html.EditorFor(model => model.Percentage, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.Percentage, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+
+                                        @*<div class="form-group">
+                                            <div class="col-lg-offset-2 col-lg-5">
+                                                <button class="btn btn-outline btn-sm btn-primary" type="submit">Create Category</button>
+                                            </div>
+                                        </div>*@
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-sm btn-white" data-dismiss="modal">Close</button>
+                <button  class="btn btn-outline btn-sm btn-primary" type="submit">Create</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+@section styles{
+    <link href="~/Content/DataTables-1.9.1/media/css/jquery.dataTables.css" rel="stylesheet" />
+    <link href="~/Content/DataTables-1.9.1/extras/TableTools/media/css/TableTools.css" rel="stylesheet" />
+
+}
+
+@section scripts{
+    <script src="~/Scripts/DataTables-1.9.1/media/js/jquery.dataTables.min.js"></script>
+    <script src="~/Scripts/DataTables-1.9.1/extras/TableTools/media/js/TableTools.min.js"></script>
+    <script src="~/Scripts/JQueryDataTablesClientScripts/taxes.js"></script>
+}
+
+
+
