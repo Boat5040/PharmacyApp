@@ -1,0 +1,88 @@
+﻿@model PharmacyApp.Areas.Administration.Models.SuperAdminViewModel
+@using PharmacyApp.Constants
+@{
+    ViewBag.Title = "User Profile";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-7">
+        <h2>USER PROFILE</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="@Url.RouteUrl(HomeControllerRoute.GetIndex)">Home</a>
+            </li>
+            <li>
+                <a href="@Url.RouteUrl(SuperAdminAccountControllerRoute.GetIndex)">Super Users</a>
+            </li>
+            <li class="active">
+                <a href="#">@ViewBag.Title</a>
+            </li>
+        </ol>
+    </div>
+</div>
+
+<div class="wrapper wrapper-content">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>User Profile Information</h5>
+                </div>
+                <div class="ibox-content">
+                    <img alt="image" class="img-circle" src="~/Content/Images/login-user.png" />
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.FirstName)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.FirstName)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.LastName)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.LastName)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.UserName)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.UserName)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Institution)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Institution)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Status)
+                        </dt>
+
+                        <dd>
+                            @if(Model.Status == PharmacyApp.Models.UserStatus.Active.ToString())
+                            {
+                                <span class="label label-success">@Html.DisplayFor(model=>model.Status)</span>
+                            }
+                            else
+                                {
+                                    <span class="label label-danger">@Html.DisplayFor(model => model.Status)</span>
+                                }
+                        </dd>
+                    </dl>
+                    <hr/>
+                    @Html.RouteLink("Edit", SuperAdminAccountControllerRoute.GetEdit, new { userId = Model.UserId },new { @class= "btn btn-xs btn-success" }) 
+                    @Html.RouteLink("Delete", SuperAdminAccountControllerRoute.GetDelete, new { userId = Model.UserId }, new { @class = "btn btn-xs btn-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

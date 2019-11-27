@@ -7,7 +7,7 @@ namespace PharmacyApp.Constants
 {
     public static class SuperAdminAccountControllerRoute
     {
-        public const string GetIndex = ControllerName.SuperAdminAccount + "GetIndex";
+        public const string GetIndex =AreaNames.Admin + ControllerName.SuperAdminAccount + "GetIndex";
         public const string GetCreate = ControllerName.SuperAdminAccount + "GetCreate";
         public const string GetVerifyUserName = ControllerName.SuperAdminAccount + "GetVerifyUserName";
         public const string GetEdit = ControllerName.SuperAdminAccount + "GetEdit";
